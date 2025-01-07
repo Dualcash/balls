@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+html, body {
+    font-family: 'Jost', sans-serif; 
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #0C0C1B 0%, #1C1C4A 50%, #0D0D27 100%);
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 375px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Вернем элементы в начало */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    flex-grow: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px; /* Отступ между хедером и остальными блоками */
+}
+
+.coin-icon {
+    width: 25px;  /* Размер изображения */
+    height: auto;
+    vertical-align: middle;  /* Вертикальное выравнивание по тексту */
+} 
+
+.info-icon {
+    width: 25px;  /* Размер изображения */
+    height: 25px;
+    vertical-align: middle;  /* Вертикальное выравнивание по тексту */
+} 
+
+.user-icon {
+    width: 25px;  /* Размер изображения */
+    height: 25px;
+    vertical-align: middle;  /* Вертикальное выравнивание по тексту */
+} 
+
+
+
+
+.username, .resources {
+    font-family: 'Jost', sans-serif; 
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.resources .resource-bet {
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    margin: 10px 0; /* Отступ между счетом и верхними элементами */
+    font-family: 'Jost', sans-serif; 
+    background: #cfcfcf;
+    color: black;
+    border-radius: 20px;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.score-value {
+    position: absolute;
+    bottom: 83%;
+    display: inline-block; /* Flexbox для выравнивания содержимого по горизонтали */
+    align-items: center; /* Вертикальное выравнивание элементов */
+    font-family: 'Jost', sans-serif;
+    background: #d7d7d7;
+    color: black;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+}
+
+
+
+.level-info {
+    font-family: 'Jost', sans-serif; 
+    position: absolute;
+    bottom: 23%; /* Над изображением и на 30px выше блока .stats */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    margin-bottom: 410px;
+    white-space: nowrap; 
+}
+
+.character {
+    position: absolute;
+    bottom: 220px; /* На 30px выше блока .stats */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 190px;
+}
+
+.character img {
+    width: 200px;
+    height: auto;
+    border-radius: 20px;
+    border: 2px solid #333;
+}
+.character {
+    position: absolute;
+    bottom: 19%; /* На 30px выше блока .stats */
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 190px;
+    width: 200px;
+    height: auto;
+    perspective: 1000px; /* Для 3D-эффекта переворота */
+}
+
+
+
+#character-text {
+    font-family: 'Jost', sans-serif; 
+    display: none;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%) ;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #333;
+    text-align: center;
+    /* Удален transform для нормального отображения текста */
+}
+.stats {
+    font-family: 'Jost', sans-serif;
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f0f0f0;
+    color: black;
+    padding: 20px;
+    border-radius: 15px;
+    width: 60%;
+    height: 17%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.stat-item {
+    width: 45%; /* Определяем ширину элементов */
+}
+
+.divider-horizontal {
+    border-top: 1px solid black;
+    margin: 1px 0;
+}
+
+
+/* Усиления в правом нижнем углу над панелью */
+.boost {
+    position: absolute;
+    bottom: 110px; /* Увеличил расстояние до панели управления */
+    right: 0px; /* Кнопка будет с отступом от правого края */
+}
+
+.boost button {
+    font-family: 'Jost', sans-serif; 
+    padding: 10px 20px;
+    border: none;
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    color: white;
+    border-radius: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+
+/* Энергия в левом нижнем углу */
+.energy {
+    font-family: 'Jost', sans-serif; 
+    position: absolute;
+    bottom: 120px;
+    left: 20px;
+    background: none;
+    font-size: 1rem;
+    color: yellow;
+}
+
+/* Панель управления */
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px;
+    z-index: 999; /* Убираем фиксированное позиционирование */
+    margin-top: auto; 
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around; /* Равномерно распределим элементы */
+    align-items: center;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    padding: 10px;
+    border-radius: 30px 30px 0 0; /* Закруглили только верхние углы */
+    border: 3px solid rgba(255, 255, 255, 0.1); /* Тонкая светлая граница с прозрачностью */
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Легкая тень для глубины */
+}
+
+.footer-icons a {
+    font-family: 'Jost', sans-serif; 
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 0 5px;
+    background: transparent;
+    border-radius: 10px;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.footer-icons img {
+    width: 30px; 
+    height: 30px; 
+    margin-bottom: 5px;
+}
+
+.footer-icons a:hover {
+    background: rgba(255, 255, 255, 0.1); /* Легкое затемнение при наведении */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 0 5px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+.boost-panel {
+    font-family: 'Jost', sans-serif; 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75%;
+    background: #211B1B;
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    border-radius: 20px;
+    z-index: 3;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.boost-content {
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h3 {
+    font-family: 'Jost', sans-serif; 
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.boost-item {
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    justify-content: space-between; /* Разделяет описание и кнопку по краям */
+    align-items: center; /* Центрирует все элементы по вертикали */
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 90%;
+    position: relative;
+}
+
+.boost-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.boost-description {
+    font-family: 'Jost', sans-serif; 
+    flex-grow: 1;
+    text-align: left;
+}
+
+.boost-description p {
+    font-family: 'Jost', sans-serif; 
+    margin: 5px 0;
+}
+
+.btn-buy-boost {
+    font-family: 'Jost', sans-serif; 
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.289);
+    border-radius: 10px;
+    padding: 5px 10px; /* Уменьшаем размер кнопки */
+    cursor: pointer;
+    position: absolute; /* Абсолютное позиционирование кнопки */
+    bottom: 10px; /* Расположение кнопки внизу */
+    right: 10px; /* Расположение кнопки справа */
+    font-size: 12px; /* Уменьшаем шрифт на кнопке */
+}
+
+.btn-buy-boost:hover {
+    background-color: #777;
+}
+
+
+.close-btn {
+    font-family: 'Jost', sans-serif; 
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+.coin-icon-boost {
+    width: 25px;  /* Размер изображения */
+    height: auto;
+    vertical-align: middle;  /* Вертикальное выравнивание по тексту */
+    margin-bottom: 3px; 
+} 
+
+.not-pass{
+    position: fixed; /* Зафиксировать по центру экрана */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрирование */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    color: white; /* Белый текст */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 10px; /* Закругленные углы */
+    font-size: 16px; /* Размер текста */
+    text-align: center; /* Центрировать текст */
+    z-index: 1000; /* Привести элемент на передний план */
+    width: 80%; /* Ширина окна */
+    max-width: 300px; /* Максимальная ширина окна */
+}
+.modal {
+    display: none; /* Скрыть по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    display: flex; /* Flexbox для центрирования */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: 'Jost', sans-serif;
+}
+
+.modal-content {
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    color: #fff; /* Цвет текста для контраста */
+    text-align: center;
+    width: 80%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+/* Стили для поля ввода и кнопки в модальном окне */
+.modal-content input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+}
+
+.modal-content button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #555;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #777;
+}
+

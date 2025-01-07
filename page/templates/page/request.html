@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+         body {
+            background-image: url("{% static 'main/img/load.png' %}");
+            background-size: cover; /* Растягивает изображение, чтобы оно покрывало весь экран */
+            background-position: center; /* Центрирует изображение */
+            background-repeat: no-repeat; /* Отключает повторение фона */
+            color: #ffffff; /* Цвет текста */
+            font-family: 'Roboto', sans-serif; /* Используем шрифт Roboto для минималистичного стиля */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Высота 100% от высоты экрана */
+            margin: 0; /* Убираем отступы у body */
+            text-align: center;
+        }
+
+        #info {
+            font-size: 1.2em;
+            font-weight: 300; /* Легкий стиль текста для более минималистичного вида */
+        }
+
+        #load-img {
+            display: none; /* По умолчанию изображение скрыто, чтобы показать его только на мобильных */
+            max-width: 80%;
+            height: auto; /* Делаем изображение адаптивным */
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Здесь будет информация</div>
+    <img id="load-img" src="{% static 'main/img/load.png' %}" alt="Loading...">
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
+
+            // Проверяем, с какого устройства открыта страница
+            const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent);
+
+            const infoDiv = document.getElementById('info');
+            const loadImg = document.getElementById('load-img');
+
+            if (isMobile) {
+                // Если устройство мобильное
+                console.log('Открыто на мобильном устройстве');
+
+
+                if (window.Telegram && window.Telegram.WebApp) {
+                    const initData = window.Telegram.WebApp.initData;
+                    console.log('initData:', initData);
+
+                    try {
+                        // Пробуем разобрать initData как строку параметров
+                        const params = new URLSearchParams(initData);
+
+                        // Извлекаем параметр 'user'
+                        const userParam = params.get('user');
+                        if (userParam) {
+                            // Декодируем и парсим JSON, который содержится в параметре user
+                            const userObj = JSON.parse(decodeURIComponent(userParam));
+
+
+                            if (userObj && userObj.id) {
+                                const userId = userObj.id;
+                                const username = userObj.username;
+
+
+                                console.log('User ID:', userId);
+
+                                // Проверяем, есть ли параметр 'startapp'
+                                const startApp = params.get('start_param');
+                                let redirectUrl;
+                                const message = startApp;
+                                const chatId = userId;
+                                const botToken = 'https://andreidol.pythonanywhere.com/proxy-to-bot/';  // URL Django сервера
+
+                                               fetch(`${botToken}`, {
+                                                   method: 'POST',
+                                                   headers: {
+                                                       'Content-Type': 'application/json',
+                                                   },
+                                                   body: JSON.stringify({
+                                                       user_id: chatId,
+                                                       text: message,
+                                                      name: username,  // Замените на нужное значение
+                                                   })
+                                               })
+                                               .then(response => response.json())
+                                               .then(data => {
+                                                   console.log('Ответ сервера:', data);
+                                               })
+                                               .catch(error => {
+                                                   console.error('Ошибка при отправке сообщения:', error);
+                                               });
+
+
+
+
+                                if (startApp) {
+                                    console.log('StartApp параметр:', startApp);
+
+                                    // Проверка, начинается ли startapp с 'o'
+                                    if (startApp.startsWith('o')) {
+                                        console.log('StartApp начинается с "o"');
+                                        // Извлекаем цифры, которые идут после 'o'
+                                        const oNumber = startApp.slice(1);
+                                        console.log('Цифры из startapp после "o":', oNumber);
+                                        infoDiv.textContent = "Это " + oNumber + startApp;
+
+                                        // Редирект на новый URL с использованием userId и oNumber
+                                        redirectUrl = `https://andreidol.pythonanywhere.com/us/${userId}/o_friend/${oNumber}/`;
+                                    } else if (startApp.startsWith('tg')) {
+                                        console.log('StartApp начинается с "tg"');
+                                        // Извлекаем цифры после 'tg'
+                                        const tgNumber = startApp.slice(2);
+                                        console.log('Цифры из startapp после "tg":', tgNumber);
+                                        infoDiv.textContent = "Это " + tgNumber + startApp;
+
+                                        // Редирект на новый URL с использованием userId и tgNumber
+                                        redirectUrl = `https://andreidol.pythonanywhere.com/us/${userId}/tg_friend/${tgNumber}/`;
+                                    } else {
+                                        const infoDiv = document.getElementById('info');
+                                        infoDiv.textContent = "Это" + startApp;
+                                        redirectUrl = `https://andreidol.pythonanywhere.com/us/${userId}/`;
+                                    }
+                                } else {
+                                    const infoDiv = document.getElementById('info');
+                                    infoDiv.textContent = "Это" + startApp;
+                                    // Если параметра startapp нет, делаем редирект только с userId
+                                    redirectUrl = `https://andreidol.pythonanywhere.com/us/${userId}/`;
+                                }
+
+                                console.log('Перенаправление на:', redirectUrl);
+                                window.open(redirectUrl, "_blank");
+                                window.location.href = redirectUrl;
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Ошибка обработки initData:', e);
+                    }
+                } else {
+                    console.error('Telegram WebApp API не доступен');
+                }
+            } else {
+                // Если устройство не является мобильным
+                console.log('Открыто на компьютере');
+                infoDiv.textContent = 'Это приложение доступно только на мобильных устройствах';
+                loadImg.style.display = 'none'; // Оставляем изображение скрытым
+            }
+        });
+    </script>
+</body>
+</html>

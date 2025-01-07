@@ -1,0 +1,805 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Game UI</title>
+    <link rel="preload" href="{% static 'main/img/load.png' %}" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/games.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/load.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/popup.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/friends.css' %}">
+
+    
+    <style>
+        .loading-screen {
+            background-image: url("{% static 'main/img/load.png' %}");
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    
+
+    <div class="container" style = 'display: none;'>
+        <div id="edit-modal" class="modal" style = 'display: none;'>
+            <div class="modal-content">
+                <input type="text" id="username-input" placeholder="Введите юзернейм">
+                <button id = 'add-username'>✔️</button>
+            </div>
+        </div>
+        <header>
+            <div class="username">
+                <img src="{% static 'main/img/users_egg.png' %}" class="user-icon" loading="lazy">
+                юзернейм 
+                <img src="{% static 'main/img/edit.png' %}" class="coin-icon" id = 'edit-btn' loading="lazy"></div>
+            <div class="resources">
+                <div class="resource-bet">
+                    100 <img src="{% static 'main/img/egg.png' %}" alt="Coins" class="coin-icon" id = 'rise-popup' loading="lazy">/час
+                </div>
+                <div class="resource" style="display: none;">
+                    100 <img src="{% static 'main/img/egg.png' %}" alt="Coins" class="coin-icon" id = 'rise-popup' loading="lazy">/час
+                </div>
+                
+            </div>
+        </header>
+        
+        <div class="score-value">
+            <div class="score-res-better">
+                100 <img src="{% static 'main/img/blackagg.png' %}" class="coin-icon" loading="lazy">
+            </div>
+            <div class="score-res"  style="display: none;">
+                100 <img src="{% static 'main/img/blackagg.png' %}" class="coin-icon" loading="lazy">
+            </div>
+            
+            <div id="egg-url" data-url="{% static 'main\img\blackagg.png' %}"></div>
+            
+        </div>
+
+        <div class="popup" style = "display: none;">
+            <div class="popup-content">
+              <button class="popup-close-btn">&times;</button>
+              <img src="path-to-your-image.png" alt="Coin bag" class="popup-coin-bag" loading="lazy">
+              <h2 class="popup-title">Увеличьте вашу прибыль</h2>
+              <p class="popup-text">Перейдите в раздел «Лавка» и купите улучшения для своей ведьмочки, чтобы увеличить прибыль. Находясь оффлайн, прибыль можно забрать, только за последние 3 часа. Чтобы получить больше прибыли, старайтесь заходить в игру каждые 3 часа.</p>
+              <button class="popup-shop-btn">Перейти в Лавку</button>
+            </div>
+          </div>
+        
+
+        <div class="level-info" >
+            Бездомный, 1 уровень
+        </div>
+
+        <div class="character">
+            <img src="{% static 'main/img/character.png' %}" alt="character" class="character-img" id = "hobo-img" loading="lazy"> 
+            <div id="hamster-url" data-url="{% static 'main/img/hamster-char.png' %}"></div>
+            <div id="hobo-url" data-url="{% static 'main/img/character.png' %}"></div>
+            <div id="tony-url" data-url="{% static 'main/img/tony-char.png' %}"></div>
+            <div id="capybar-url" data-url="{% static 'main/img/capybar-char.png' %}"></div>
+            <div id="botan-url" data-url="{% static 'main/img/sloth-char.png' %}"></div>
+            <div id="hui-url" data-url="{% static 'main/img/frog-char.png' %}"></div>
+            <div id="mask-url" data-url="{% static 'main/img/mask-char.png' %}"></div>
+            <div id="pasha-url" data-url="{% static 'main/img/pasha-char.png' %}"></div>
+            <div id="tapswap-url" data-url="{% static 'main/img/tapswap-char.png' %}"></div>
+            <div id="pns-url" data-url="{% static 'main/img/pns-char.png' %}"></div>
+            <div id="white-egg-url" data-url="{% static 'main/img/egg.png' %}"></div>
+            <div id="edit-url" data-url="{% static 'main/img/edit.png' %}"></div>
+            <div id="info-url" data-url="{% static 'main/img/info.png' %}"></div>
+            <div id="popup-rise-url" data-url="{% static 'main/img/rise_popup.png' %}"></div>
+            <div id="energy-url" data-url="{% static 'main/img/energy.png' %}"></div>
+            <div id="users-url" data-url="{% static 'main/img/users_egg.png' %}"></div>
+            <div id="back-game-url" data-url="{% static 'main/img/back-game.jpg' %}"></div>
+            <div id="bonus-url" data-url="{% static 'main/img/egg_with_egg.png' %}"></div>
+            <div id="ton-url" data-url="{% static 'main/img/ton.png' %}"></div>
+            <div id="tg-img-url" data-url="{% static 'main/img/telegram.png' %}"></div>
+            <div id="tt-img-url" data-url="{% static 'main/img/tik-tok.png' %}"></div>
+            <div id="inst-img-url" data-url="{% static 'main/img/instagram.png' %}"></div>
+            <div id="YT-img-url" data-url="{% static 'main/img/youtube.png' %}"></div>
+            <div id="character-text" style="display: none;">
+                <p>Имя: Бездомный</p>
+                <p><strong>Возраст:</strong> 35 лет</p>
+                <p><strong>Происхождение:</strong> Городской район, где жизнь кипит, но не всегда радужна.</p>
+                <p><strong>Предыстория:</strong> В юности Бездомный мечтал стать известным, однако обстоятельства сложились так, что он оказался на улице. После серии неудачных отношений с девушками он потерял веру в себя и стал бродягой.</p>
+
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-row">
+                <div class="stat-item left">Энергия ⚡</div>
+                <div class="stat-item right" id = 'energy_stat'>5/5</div>
+            </div>
+            <div class="divider-horizontal"></div>
+            <div class="stat-row">
+                <div class="stat-item left">Прирост</div>
+                <div class="stat-item right" id = 'rise_stat'>1к/час</div>
+            </div>
+            <div class="divider-horizontal"></div>
+            <div class="stat-row">
+                <div class="stat-item left">Способность</div>
+                <div class="stat-item right"  id = 'ability_stat'>Нету</div>
+            </div>
+        </div>
+
+        <div class="boost">
+            <button id = 'boost-btn'>Усиления🚀</button>
+        </div>
+        
+        <div class="boost-panel" style="display: none;">
+            <div class="boost-content">
+                <h3>Усиления</h3>
+                <button id="close-panel" class="close-btn">✖</button>
+                
+                <div class="boost-item">
+                    <img src="{% static 'main/img/egg.png' %}" alt="Увеличение прироста" class="boost-icon" loading="lazy">
+                    <div class="boost-description" id = 'rise-description'>
+                        <p><strong>Увеличение прироста 1 lvl</strong></p>
+                        <p>Увеличение прироста на 100/ч</p>
+                        <p>Цена: 1000 <img src="{% static 'main/img/egg.png' %}" alt="Цена" class="coin-icon" loading="lazy"></p>
+                    </div>
+                    <button class="btn-buy-boost" id = 'buy-rise'>Купить</button>
+                </div>
+
+                <div class="boost-item">
+                    <img src="{% static 'main/img/molnia.png' %}" alt="Увеличение прироста" class="boost-icon" loading="lazy">
+                    <div class="boost-description" id = 'energy-description'>
+                        <p><strong>Заполнение энергии 1 lvl</strong></p>
+                        <p>Заполнение энергии полностью</p>
+                        <p>Цена: 1000 <img src="{% static 'main/img/egg.png' %}" alt="Цена" class="coin-icon" loading="lazy"></p>
+                    </div>
+                    <button class="btn-buy-boost" id = 'buy-energy'>Купить</button>
+                </div>
+        
+            </div>
+        </div>
+        <!-- Энергия в левом нижнем углу -->
+        <div class="energy">5/5⚡</div>
+        <div class = 'not-pass' style = 'display: none;'>У вас не хватает ресурсов на эту покупку</div>
+    </div>
+
+    <!--      вкаладки -->
+    <div class="games_page" style="display: none;">
+        <h2 class="page-title">Игры</h2>
+    
+        <!-- Уровень 1 -->
+        <h3 class="level-title" id = 'level-1'>Уровень 1</h3>
+    
+        <!-- Первая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/egg.png' %}" alt="Egg" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Лови яйцо</p>
+                <p class="game-description">Лови яйца, чтобы они не разбились</p>
+                <p class="reward">Награда <span class="coin">:20 <img src="{% static 'main/img/egg.png' %}" alt="coin"></span loading="lazy"></p>
+            </div>
+            <div class="corner-label">1 ⚡</div>
+            <button class="play_eggs_down" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-2'>Уровень 2</h3>
+    
+        <!-- Вторая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/hamster.png' %}" alt="Egg" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Стреляй в хомяков</p>
+                <p class="game-description">Зарабатывай, стреляя в хомяков</p>
+                <p class="reward">Награда <span class="coin">: 100 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">1 ⚡</div>
+            <button class="hamster_shoot" id='play_button'>Играть</button>
+        </div>
+
+        <!-- Десятая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/toilet.png' %}" alt="Turtle" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Заполни туалет</p>
+                <p class="game-description">Заполни туалет как можешь</p>
+                <p class="reward">Награда <span class="coin">: 100 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">1 ⚡</div>
+            <button class="toilet" id='play_button'>Играть</button>
+        </div>
+    
+        <!-- Третья карточка игры -->
+        
+        <!-- Уровень 2 -->
+        <h3 class="level-title" id = 'level-3'>Уровень 3</h3>
+
+        <!-- Шестая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/tony.png' %}" alt="Robot" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Flappy Tony</p>
+                <p class="game-description">Помоги Tony преодолеть препятствия</p>
+                <p class="reward">Награда <span class="coin">: 500 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">1 ⚡</div>
+            <button class="flappy-tony" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-4'>Уровень 4</h3>
+
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/capybar.png' %}" alt="Turtle" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Крестики-Нолики</p>
+                <p class="game-description">Победи Капибарыгу в Крестики-Нолики</p>
+                <p class="reward">Награда <span class="coin">: 10k <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">1 ⚡</div>
+            <button class="crosses" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-5'>Уровень 5</h3>
+    
+        <!-- Четвертая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/sloth.png' %}" alt="Sloth" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Найди ленивца</p>
+                <p class="game-description">Трогай ленивца среди бананов</p>
+                <p class="reward">Награда <span class="coin">: 1k <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">2 ⚡</div>
+            <button class="dot_touch" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-6'>Уровень 6</h3>
+
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/tower.jpg' %}" alt="Fox" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Империя</p>
+                <p class="game-description">Постройте свою империю с нуля</p>
+                <p class="reward">Награда <span class="coin">: 2k <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">2 ⚡</div>
+            <button class="tower-built" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-7'>Уровень 7</h3>
+
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/doge.png' %}" alt="Chicken" class="game-img">
+            <div class="game-info">
+                <p class="game-title">Doge VS Маск</p>
+                <p class="game-description">Помоги собаке оббежать Илона</p>
+                <p class="reward">Награда <span class="coin">: 5000 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">3 ⚡</div>
+            <button class="chicken_run" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-8'>Уровень 8</h3>
+    
+    
+        <!-- Пятая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/bitcoin.png' %}" alt="Cat" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Пузырь Биткоин</p>
+                <p class="game-description">Попробуй забрать деньги с Биткоина</p>
+                <p class="reward">Награда <span class="coin">: 50000 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">3 ⚡</div>
+            <button class="balloon_pop" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-9'>Уровень 9</h3>
+    
+    
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/eagle.png' %}" alt="Bee" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Иглы и яйцо</p>
+                <p class="game-description">Не давай иглам попасть в яйцо</p>
+                <p class="reward">Награда <span class="coin">: 75000 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">3 ⚡</div>
+            <button class="avoid" id='play_button'>Играть</button>
+        </div>
+
+        <h3 class="level-title" id = 'level-10'>Уровень 10</h3>
+
+        
+
+        <!-- Одиннадцатая карточка игры -->
+        <div class="game-card">
+            <div class="lock-overlay">🔒</div>
+            <img src="{% static 'main/img/egg_button.png' %}" alt="Dragon" class="game-img" loading="lazy">
+            <div class="game-info">
+                <p class="game-title">Трогай яйцо</p>
+                <p class="game-description">Трогай яйцо, чтобы заработать</p>
+                <p class="reward">Награда <span class="coin">: 100000 <img src="{% static 'main/img/egg.png' %}" alt="coin" loading="lazy"></span></p>
+            </div>
+            <div class="corner-label">3 ⚡</div>
+            <button class="tap_egg" id='play_button'>Играть</button>
+        </div>
+
+
+        <div class="invisible-block"></div>
+
+        <div class = 'blocked-game' style = 'display: none;'>Игра недоступна, повысьте уровень</div>
+
+    </div>
+
+    <div class = 'game_show'>
+
+    </div>
+    
+    <div class = 'urls' style="display: none;">
+        <div id="game-sloth-url" data-url="{% static 'main/img/game-sloth.png' %}"></div>
+        <div id="bitcoin-url" data-url="{% static 'main/img/bitcoin.png' %}"></div>
+        <div id="banana-url" data-url="{% static 'main/img/banana.png' %}"></div>
+        <div id="bird-url" data-url="{% static 'main/img/tony-game.png' %}"></div>
+        <div id="impery-url" data-url="{% static 'main/img/tower.jpg' %}"></div>
+        <div id="eagle-url" data-url="{% static 'main/img/eagle.png' %}"></div>
+        <div id="toilet-url" data-url="{% static 'main/img/toilet.png' %}"></div>
+        <div id="hamster-game-url" data-url="{% static 'main/img/hamster.png' %}"></div>
+        <div id="btn-game-url" data-url="{% static 'main/img/egg_button.png' %}"></div>
+        <div id="doge-url" data-url="{% static 'main/img/doge.png' %}"></div>
+        <div id="elon-url" data-url="{% static 'main/img/elon.png' %}"></div>
+    </div>
+
+    
+
+    <div class="friends_page" style="display: none;">
+        <div class = 'copy-link' style = 'display: none;'>
+            <textarea id="textareaToCopy" style = 'display: none;'>Кликни сюда</textarea>
+        </div>
+        <h1>Друзья</h1>
+        <div class="friends_list">
+            <div class="friend_item">
+                <span>Друг</span>
+                <span id = 'friends_count'>👤 0</span> <!-- Добавлено эмодзи человечка и цифра 0 -->
+                <span>Награда</span>
+            </div>
+        </div>
+    
+        <div class="invite_buttons">
+            <div class="invite_group">
+                <button class="invite_button">
+                    <img src="{% static 'main/img/egg_with_egg.png' %}" alt="Telegram Character" class="character_icon" loading="lazy">
+                    <div>
+                        <span>Пригласить друга с Telegram</span><br>
+                        <span>Награда: 20k <img src="{% static 'main/img/blackagg.png' %}" class="egg-icon" loading="lazy"></span>
+                    </div>
+                </button>
+                <button class="copy_button" ontouchstart = tg_ref>
+                    <img src="{% static 'main/img/copy.png' %}" alt="Copy" class="character_icon" id = 'tg-ref' loading="lazy">
+                </button>
+            </div>
+            
+            <div class="invite_group">
+                <button class="invite_button">
+                    <img src="{% static 'main/img/egg_with_pns.png' %}" alt="Social Media Character" class="character_icon" loading="lazy">
+                    <div>
+                        <span>Пригласить друга с TikTok, YouTube, Instagram</span><br>
+                        <span>Награда: 15 PNS</span>
+                    </div>
+                </button>
+                <button class="copy_button" ontouchstart = o_ref>
+                    <img src="{% static 'main/img/copy.png' %}" alt="Copy" class="character_icon" id = 'o-ref' loading="lazy">
+                </button>
+            </div>
+        </div>
+
+        
+    
+        <div class="invisible_block"></div> <!-- Невидимый блок под кнопками -->
+
+
+    </div>
+    
+    
+
+    <div class="cards_page" style="display: none;">
+        <h2 class="page-title">Карты</h2>
+    
+        <div class="info-popup" style="display: none;">
+            <p>Это дополнительная информация о персонаже и его характеристиках.</p>
+        </div>
+    
+        <div class="card-item">
+            <img src="{% static 'main/img/cart_hobo.png' %}" alt="character" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 1</p>
+                <p>Бездомный</p>
+                <p><strong>Способность:</strong> Без бонуса</p>
+                <p>Цена: 0 <img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'first_card'>!</button>
+                <button class="buy-btn" id = 'hobo-buy'>Куплено</button>
+            </div>
+        </div>
+    
+        <div class="card-item">
+            <img src="{% static 'main/img/shit_hamster.png' %}" alt="character2" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 2</p>
+                <p>Хомяк</p>
+                <p>Способность: В колесе</p>
+                <p>Цена: 10k <img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'second_card'>!</button>
+                <button class="buy-btn" id = 'hamster-buy'>Купить</button>
+            </div>
+        </div>
+    
+        <div class="card-item">
+            <img src="{% static 'main/img/tony.png' %}" alt="character3" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 3</p>
+                <p>BirdTony</p>
+                <p><strong>Способность:</strong> Доп. яйцо</p>
+                <p>Цена: 30k <img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'third_card'>!</button>
+                <button class="buy-btn"  id = 'tony-buy'>Купить</button>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <img src="{% static 'main/img/capybar.png' %}" alt="character3" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 4</p>
+                <p>Капибарыга</p>
+                <p><strong></strong>Способность:</strong></p>
+                <p>Жила</p>
+                <p>Цена: 120k<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'fourth_card'>!</button>
+                <button class="buy-btn"  id = 'capybar-buy'>Купить</button>
+            </div>
+        </div>
+    
+    
+        <div class="card-item">
+            <img src="{% static 'main/img/sloth.png' %}" alt="character5" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 5</p>
+                <p>CopyGemZ</p>
+                <p>Способность: Куш</p>
+                <p>Цена: 500k<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'fifth_card'>!</button>
+                <button class="buy-btn" id = 'botan-buy'>Купить</button>
+            </div>
+        </div>
+    
+        <div class="card-item">
+            <img src="{% static 'main/img/frog.png' %}" alt="character6" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 6</p>
+                <p>Meme</p>
+                <p>Способность: Бонусиньё</p>
+                <p>Цена: 3m<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id = 'sixth_card'>!</button>
+                <button class="buy-btn" id = 'hui-buy'>Купить</button>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <img src="{% static 'main/img/mask.jpg' %}" alt="character7" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 7</p>
+                <p>Doge Musk</p>
+                <p><strong>Способность:</strong> Престиж</p>
+                <p>Цена: 20m<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id="seventh_card">!</button>
+                <button class="buy-btn" id="mask-buy">Купить</button>
+            </div>
+        </div>
+        
+        <div class="card-item">
+            <img src="{% static 'main/img/pixel.png' %}" alt="character8" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 8</p>
+                <p>Паша Pixel</p>
+                <p>Способность: Эксперт</p>
+                <p>Цена: 100m<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id="eighth_card">!</button>
+                <button class="buy-btn" id="pasha-buy">Купить</button>
+            </div>
+        </div>
+        
+        <div class="card-item">
+            <img src="{% static 'main/img/tapswap.png' %}" alt="character9" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 9</p>
+                <p>T.A.P.S.W.A.P</p>
+                <p><strong>Способность:</strong></p>
+                <p>Стабильный</p>
+                <p>Цена: 500m<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id="ninth_card">!</button>
+                <button class="buy-btn" id="tapswap-buy">Купить</button>
+            </div>
+        </div>
+        
+        <div class="card-item">
+            <img src="{% static 'main/img/PNS.png' %}" alt="character10" class="card-img" loading="lazy">
+            <div class="card-info">
+                <p>Уровень 10</p>
+                <p>PNS</p>
+                <p>Способность: Гений</p>
+                <p>Цена: 1mlr<img src="{% static 'main/img/egg.png' %}" alt="coin" class="coin-icon" loading="lazy"></p>
+                <button class="info-btn" id="tenth_card">!</button>
+                <button class="buy-btn" id="pns-buy">Купить</button>
+            </div>
+        </div>
+        
+    
+        
+    
+        <div class="invisible-block"></div>
+    
+    </div>
+    
+    
+
+    <div class = 'tasks_page' style="display: none;">
+        <div class = 'tasks_page_hide' style="display: none;"></div>
+        <h1 class="shop-title">Магазин</h1>
+
+    <!-- Блок с балансом -->
+    <div class="balance-container">
+        <div class = 'pns-scores' style = 'display: none;'>0</div>
+        <div class="balance">
+            <div class = 'pns-scores-bet'>0</div>
+            <img src="{% static 'main/img/pns-coin.png' %}" alt="PNS coins" class="coin-icon" loading="lazy">
+        </div>
+        <button class="balance-info-button">!</button>
+    </div>
+
+    <!-- Блок для покупки PNS -->
+    <h2 class="shop-subtitle">Купить PNS</h2>
+    <div class="shop-items">
+        <div class="shop-item">
+            <div class="shop-item-info" id = 'hundred-pns'>
+                <h3>100 PNS</h3>
+                <img src="{% static 'main/img/pns-coin.png' %}" alt="100 PNS coins" loading="lazy">
+                <div class="currency-icon">100k <img src="{% static 'main/img/egg.png' %}" alt="Currency Icon" class="currency-icon" loading="lazy"></div>
+            </div>
+        </div>
+        <div class="shop-item" id = 'k-pns'>
+            <div class="shop-item-info">
+                <h3>1k PNS</h3>
+                <img src="{% static 'main/img/two-pns-coin.png' %}" alt="1000 PNS coins">
+                <div class="currency-icon">900k <img src="{% static 'main/img/egg.png' %}" alt="Currency Icon" class="currency-icon"></div>
+            </div>
+        </div>
+        <div class="shop-item">
+            <div class="shop-item-info" id = 'ten-k-pns'>
+                <h3>10k PNS</h3>
+                <img src="{% static 'main/img/three-pns-coin.png' %}" alt="10k PNS coins" loading="lazy">
+                <div class="currency-icon">8 mln <img src="{% static 'main/img/egg.png' %}" alt="Currency Icon" class="currency-icon" loading="lazy"></div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <!-- Блок подписок -->
+    <h2 class="shop-subtitle">Подписаться на HUGO BALLS</h2>
+    <div class="shop-items">
+        <div class="shop-item" id ='telegram-url'>
+            <div class="item-get-prize" id = 'tg-prize' style = 'display: none;'>Заберите  50 PNS</div>
+            <div class="shop-item-info">
+                <h3>50 PNS</h3>
+                <img src="{% static 'main/img/telegram.png' %}" alt="100 PNS coins" loading="lazy">
+                <div class="currency-icon">Telegram</div>
+            </div>
+        </div>
+        <div class="shop-item" id ='tt-url'>
+            <div class="item-get-prize" id = 'tt-prize' style = 'display: none;'>Заберите 75 PNS</div>
+            <div class="shop-item-info">
+                <h3>75 PNS</h3>
+                <img src="{% static 'main/img/tik-tok.png' %}" alt="1000 PNS coins" loading="lazy">
+                <div class="currency-icon">Tik Tok</div>
+            </div>
+        </div>
+        <div class="shop-item" id ='inst-url'>
+            <div class="item-get-prize" id = 'inst-prize' style = 'display: none;'>Заберите 100 PNS</div>
+            <div class="shop-item-info">
+                <h3>100 PNS</h3>
+                <img src="{% static 'main/img/instagram.png' %}" alt="10k PNS coins" loading="lazy">
+                <div class="currency-icon">Instagram</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="shop-items">
+        <div class="shop-item" id="youtube-url">
+            <div class="item-get-prize" id="yt-prize" style="display: none;">Заберите 125 PNS</div>
+            <div class="shop-item-info">
+                <h3>125 PNS</h3>
+                <img src="{% static 'main/img/youtube.png' %}" alt="YouTube" loading="lazy">
+                <div class="currency-icon">YouTube</div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Перемещаем футер за пределы контейнера -->
+    <footer class = 'footer' style = 'display: none;'>
+        <div class="footer-icons">
+            <a href="#" class = 'home'>
+                <img src="{% static 'main/img/egg.png' %}" alt="" loading="lazy">
+                <p>Home</p>
+            </a>
+            <a href="#" class = 'games'>
+                <img src="{% static 'main/img/game.png' %}" alt="" loading="lazy">
+                <p>Игры</p>
+            </a>
+            <a href="#" class = 'friends'>
+                <img src="{% static 'main/img/friend.png' %}" alt="" loading="lazy">
+                <p>Друзья</p>
+            </a>
+            <a href="#" class = 'cards'>
+                <img src="{% static 'main/img/Paper.png' %}" alt="" loading="lazy">
+                <p>Карты</p>
+            </a>
+            <a href="#" class = 'tasks'>
+                <img src="{% static 'main/img/shop.png' %}" alt="" loading="lazy">
+                <p>Магазин</p>
+            </a>
+        </div>
+    </footer>
+
+    <div class="db-data" style="display: none;">
+        <h1>Информация о пользователе</h1>
+        <div id="telegram-id">{{ data.tg_id }}</div>
+        <div id="hero_uprise">{{ data.hero_uprise }}</div>
+        <div id="nohero_uprise">{{ data.nohero_uprise }}</div>
+        <div id="max_hero_lvl">{{ data.max_hero_lvl }}</div>
+        <div id="hero_lvl">{{ data.hero_lvl }}</div>
+        <div id="now_hero">{{ data.now_hero }}</div> 
+        <div id="egg-amm">{{ data.egg_amm }}</div>
+        <div id="all-heros">{{ data.all_heros }}</div>
+        <div id="friends">{{ data.friends }}</div>
+        <div id="energy">{{ data.energy }}</div>
+        <div id="last-enter">{{ data.last_visit }}</div>
+        <div id="pns_amm">{{ data.pns_amm }}</div>
+        <div id="nickname">{{ data.nickname }}</div>
+        <div id="use_case">{{ data.use_case }}</div>
+        <div id="user_urls">{{ data.user_urls }}</div>
+    </div>
+
+    <form method="post" action="" class = 'form' style="display: none;" id = 'myForm'>
+        {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="id_tg_id" id = 'form-tg-id'>{{ form.tg_id }}</label>
+
+    </div>
+
+    <div class="form-group">
+        <label for="id_hero_uprise">Hero Uprise:</label>
+        {{ form.hero_uprise }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_nohero_uprise">No Hero Uprise:</label>
+        {{ form.nohero_uprise }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_max_hero_lvl">Max Hero Level:</label>
+        {{ form.max_hero_lvl }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_hero_lvl">Hero Level:</label>
+        {{ form.hero_lvl }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_now_hero">Current Hero:</label>
+        {{ form.now_hero }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_egg_amm">Egg Amount:</label>
+        {{ form.egg_amm }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_all_heros">All Heroes:</label>
+        {{ form.all_heros }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_friends">Friends:</label>
+        {{ form.friends }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_energy">Energy:</label>
+        {{ form.energy }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_last_visit">Last Visit:</label>
+        {{ form.last_visit }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_pns_amm">pns:</label>
+        {{ form.pns_amm }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_nickname">nickname:</label>
+        {{ form.nickname }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_use_case">use_case:</label>
+        {{ form.use_case }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_user_urls">use_case:</label>
+        {{ form.user_urls }}
+    </div>
+
+    <button type="submit">Отправить</button>
+        <button type="submit">Отправить</button>
+    </form>
+
+    <div id="placeholder" style = 'display: none;'>
+        <!-- Заглушка -->
+        <h1>Это приложение доступно только на мобильных устройствах.</h1>
+        <p>Пожалуйста, откройте его на телефоне.</p>
+    </div>
+    
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="{% static 'main/js/main.js' %}" defer></script>
+    <script src="{% static 'main/js/heroes.js' %}" defer></script>
+    <script src="{% static 'main/js/games.js' %}" defer></script>
+    <script src="{% static 'main/js/boost.js' %}" defer></script>
+    <script src="{% static 'main/js/shop.js' %}" defer></script>
+    <script src="{% static 'main/js/db-load.js' %}" defer></script>
+    <script src="{% static 'main/js/popup.js' %}" defer></script>
+    <script src="{% static 'main/js/friends.js' %}" defer></script>
+    <script src="{% static 'main/js/games/game_up_down.js' %}" defer></script>
+    <script src="{% static 'main/js/games/plane.js' %}" defer></script>
+    <script src="{% static 'main/js/games/doge.js' %}" defer></script>
+    <script src="{% static 'main/js/games/dots.js' %}" defer></script>
+    <script src="{% static 'main/js/games/balloon.js' %}" defer></script>
+    <script src="{% static 'main/js/games/birdtony.js' %}" defer></script>
+    <script src="{% static 'main/js/games/cross.js' %}" defer></script>
+    <script src="{% static 'main/js/games/tower.js' %}" defer></script>
+    <script src="{% static 'main/js/games/dodje.js' %}" defer></script>
+    <script src="{% static 'main/js/games/toilet.js' %}" defer></script>
+    <script src="{% static 'main/js/games/tap_egg.js' %}" defer></script>
+
+    
+
+
+</body>
+</html>

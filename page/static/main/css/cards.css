@@ -1,0 +1,129 @@
+.cards_page {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    min-height: calc(100vh - 60px);
+}
+
+.page-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-item {
+    position: relative; /* Оставляем для позиционирования кнопки */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.card-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.card-info {
+    font-family: 'Jost', sans-serif;
+    flex: 1;
+    text-align: left;
+    padding-right: 80px; /* Оставляем место для кнопки справа */
+}
+
+.card-info p {
+    margin: 5px 0;
+}
+
+.coin-icon {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.buy-btn {
+    position: absolute;
+    right: 20px; /* Оставляем кнопку справа */
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%); /* Смещаем на половину высоты кнопки */
+    font-family: 'Jost', sans-serif;
+    background-color: #000000;
+    color: white;
+    border: 2px solid white;
+    padding: 5px 15px; /* Уменьшаем внутренние отступы для уменьшения кнопки */
+    border-radius: 30px; /* Можно уменьшить радиус для более аккуратного вида */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px; /* Уменьшаем размер шрифта */
+}
+
+.buy-btn:hover {
+    background-color: #333;
+}
+.info-btn {
+    position: absolute;
+    top: 10px; /* Отступ от верха */
+    right: 10px; /* Отступ от правого края */
+    width: 30px; /* Размер кнопки */
+    height: 30px;
+    background-color: grey; /* Цвет фона кнопки */
+    color: white; /* Цвет текста (восклицательный знак) */
+    border: none; /* Убираем стандартную рамку */
+    border-radius: 50%; /* Круглая кнопка */
+    font-size: 20px; /* Размер восклицательного знака */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.info-btn:hover {
+    background-color: darkred; /* Изменение цвета при наведении */
+}
+
+.invisible-block {
+    height: 100px; /* Высота блока */
+    visibility: hidden; /* Блок невидим */
+}
+
+.info-popup {
+    position: fixed; /* Фиксированное позиционирование относительно окна браузера */
+    top: 50%; /* По центру по вертикали */
+    left: 50%; /* По центру по горизонтали */
+    transform: translate(-50%, -50%); /* Смещаем на половину ширины и высоты для точного центрирования */
+    width: 250px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    color: white;
+    border-radius: 10px;
+    z-index: 100; /* Чтобы всплывающее окно было поверх других элементов */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: left; /* Выравнивание текста по левой стороне */
+
+}
+
+
+
+
+

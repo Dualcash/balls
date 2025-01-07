@@ -1,0 +1,70 @@
+.popup {
+    position: fixed; /* Делает элемент фиксированным */
+    top: 50%; /* Располагает элемент по вертикали по центру экрана */
+    left: 50%; /* Располагает элемент по горизонтали по центру экрана */
+    transform: translate(-50%, -50%); /* Центрирует элемент точно по центру */
+    width: 70%;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000; /* Устанавливает элемент выше других */
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .popup-content {
+    position: relative;
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .popup-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+  }
+  
+  .popup-coin-bag {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .popup-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    color: #ffffff;
+  }
+  
+  .popup-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cccccc;
+    margin: 10px 0 20px;
+  }
+  
+  .popup-shop-btn {
+    font-family: 'Jost', sans-serif;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #ff7b00, #ff4c00);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .popup-shop-btn:hover {
+    background: linear-gradient(45deg, #ff4c00, #ff7b00);
+  }
+  

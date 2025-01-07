@@ -1,0 +1,128 @@
+.friends_page {
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    background-color: rgba(26, 26, 46, 0.8);
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.friends_list {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(180deg, #1a1a2e, #0d0d1f);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.friend_item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #40407a;
+}
+.invite_buttons {
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: auto;
+}
+
+.invite_group {
+    display: flex;
+    gap: 10px; /* Расстояние между кнопкой приглашения и кнопкой копирования */
+}
+
+.invite_button {
+    font-weight: bold;
+    font-family: 'Jost', sans-serif; 
+    display: flex;
+    align-items: center;
+    background-color: #6667AA; /* Фон кнопок */
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px; /* Расстояние между иконкой и текстом */
+    height: 80px; /* Фиксированная высота для одинакового размера */
+    box-sizing: border-box;
+}
+
+.character_icon {
+    width: 55px;
+    height: 55px;
+}
+
+.copy_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6667AA; /* Совпадающий фон */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    width: 100px; /* Увеличенная ширина */
+    height: 80px; /* Увеличенная высота */
+    cursor: pointer;
+}
+
+
+.invisible_block {
+    height: 100px;
+    width: 100%;
+    background-color: transparent;
+}
+.egg-icon {
+    width: 27px;  /* Размер изображения */
+    height: auto;
+    vertical-align: middle;  /* Вертикальное выравнивание по тексту */
+} 
+
+.copy-link {
+    position: fixed; /* Зафиксировать по центру экрана */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрирование */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    color: white; /* Белый текст */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 10px; /* Закругленные углы */
+    font-size: 16px; /* Размер текста */
+    text-align: center; /* Центрировать текст */
+    z-index: 1000; /* Привести элемент на передний план */
+    width: 80%; /* Ширина окна */
+    max-width: 300px; /* Максимальная ширина окна */
+    justify-content: center; /* Горизонтальное выравнивание */
+    box-sizing: border-box;
+}
+
+
+
+#textareaToCopy {
+    width: 100%; /* Растянуть на всю ширину контейнера */
+    height: auto; /* Высота автоматически подстраивается */
+    text-align: center; /* Текст в textarea по центру */
+    resize: none; /* Убираем возможность изменения размера */
+    border: 1px solid #ccc; /* Цвет рамки */
+    border-radius: 5px; /* Закругленные углы */
+    padding: 10px; /* Внутренние отступы */
+    background-color: #fff; /* Белый фон для контраста */
+    font-size: 14px; /* Размер текста */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    margin-top: 10px; /* Отступ сверху для отделения от текста */
+}

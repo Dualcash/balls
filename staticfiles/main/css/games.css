@@ -1,0 +1,150 @@
+.games_page {
+    padding: 20px;
+    color: white;
+    text-align: center; /* Центрируем текст */
+}
+
+.page-title {
+    font-family: 'Jost', sans-serif; 
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.level-title {
+    font-family: 'Jost', sans-serif; 
+    font-size: 1.5rem;
+    margin: 20px 0;
+    text-align: center; /* Центрируем заголовки уровней */
+}
+
+.game-card {
+    position: relative; 
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px solid rgba(255, 255, 255, 0.289);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 0 auto 20px auto; /* Центрируем карточку и добавляем нижний отступ */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    max-width: 350px;
+    height: 120px; /* Устанавливаем фиксированную высоту */
+}
+
+.lock-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #150E1A 0%, #373737 50%, #000000 100%);
+    border: 3px;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem; /* Размер эмодзи замка */
+    z-index: 10;
+    pointer-events: none;
+    display: none; /* чтобы элемент блокировал действия с .game-card */
+}
+
+.corner-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent; /* Полупрозрачный фон */
+    color: white;
+    font-size: 0.9rem;
+    font-family: 'Jost', sans-serif;
+    padding: 2px 8px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 2px solid white;
+}
+
+.game-info {
+    font-family: 'Jost', sans-serif; 
+    flex: 1;
+    text-align: left; /* Текст внутри карточек по левому краю */
+}
+
+.game-title {
+    font-family: 'Jost', sans-serif; 
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.game-description {
+    font-family: 'Jost', sans-serif; 
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.reward {
+    font-family: 'Jost', sans-serif; 
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.reward img {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+.blocked-game {
+    position: fixed; /* Зафиксировать по центру экрана */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрирование */
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный черный фон */
+    color: white; /* Белый текст */
+    padding: 20px; /* Внутренние отступы */
+    border-radius: 10px; /* Закругленные углы */
+    font-size: 16px; /* Размер текста */
+    text-align: center; /* Центрировать текст */
+    z-index: 1000; /* Привести элемент на передний план */
+    width: 80%; /* Ширина окна */
+    max-width: 300px; /* Максимальная ширина окна */
+}
+
+#play_button {
+    font-family: 'Jost', sans-serif;
+    background-color: #000000;
+    color: white;
+    border: 2px solid white; /* Добавлена белая граница */
+    padding: 10px 20px; /* Увеличен размер кнопки */
+    border-radius: 50px; /* Сделана кнопка более круглой */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px; /* Увеличен размер текста */
+}
+
+.play-btn:hover {
+    background-color: #45a049;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
